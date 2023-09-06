@@ -62,7 +62,7 @@ const MainPhase = (props) => {
     }
 
 
-    const boxA = <span className='box'>
+    const boxA = <span className='boxMainPhase'>
         <p> box A</p>
         <GenerateDeterministicUrn
             ballColors={ballColorsA}
@@ -70,7 +70,7 @@ const MainPhase = (props) => {
 
         /></span>
 
-    const boxB = <span className='box'>
+    const boxB = <span className='boxMainPhase'>
         <p>box B</p>
         <GenerateDeterministicUrn
             ballColors={ballColorsB}
@@ -89,17 +89,18 @@ const MainPhase = (props) => {
         style={{ ...buttonStyle, visibility: showButton === 0 ? "hidden" : "visible" }} onClick={() => handleClick()}>Next</button>;
 
     return (
-        <div style={textStyle}>
+        <div className="metaContainerMainPhase" style={textStyle}
+        >
             {<p>question {props.mainNumber + 1} / {expanded_pairs.length}</p>}
             <p>Bill said:</p>
             <span style={{ fontSize: '40px' }}>The ball drawn from the box will probably be:</span>
             <p style={{ fontSize: '40px' }}>{setDisplay(vgstring)}</p>
-            <div className='container'>
+            <div className='containerMainPhase'>
                 {boxA}
                 {boxB}
             </div>
             {promptText}
-            <span className="container">
+            <span className="containerMainPhase">
                 <span>Definitely Box A</span>
                 {slider}
                 <span>Definitely Box B</span>

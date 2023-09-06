@@ -11,6 +11,7 @@ import TestPhase from './TestPhase';
 
 
 const Transition = (props) => {
+    console.log("transition");
     //keeps track of which page we are on
     const [transitionTrial, setTransitionTrial] = useState(0);
     //a list of the pages for the transition

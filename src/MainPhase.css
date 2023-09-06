@@ -1,10 +1,16 @@
-.container {
+.metaContainerMainPhase {
     display: flex;
-    flex-direction: row;
-    justify-content: center
+    flex-direction: column;
+    justify-content: center;
 }
 
-.box {
+.containerMainPhase {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.boxMainPhase {
 
     background-color: lightgrey;
     padding: 2vw 5vw;

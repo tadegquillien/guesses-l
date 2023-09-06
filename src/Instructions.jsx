@@ -109,7 +109,7 @@ const TaskTutorial = (props) => {
     //display the page
     return (
 
-        <div className="page"
+        <div className="pageInst"
         //style={textStyle}
         >
             <div //className="text" 
@@ -179,7 +179,7 @@ const TaskTutorialTwo = (props) => {
     //display the page
     return (
 
-        <div className="page">
+        <div className="pageInst">
             <div //className="text" 
                 style={props.localTextStyle}
             >

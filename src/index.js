@@ -17,14 +17,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import ConsentForm from './ConsentForm';
-import TrainingPhase from './TrainingPhase';
+// import TrainingPhase from './TrainingPhase';
 import TestPhase from './TestPhase';
 import MainPhase from './MainPhase';
 import Instructions from './Instructions';
 import Transition from './Transition';
 import Transition2 from './Transition2';
 import Demographics from './Demographics';
-import ProbabilityCheck from './probabilityCheck';
+// import ProbabilityCheck from './probabilityCheck';
 import { shuffledUrnIds, num_intro_trials, probCheckOrder, expanded_pairs } from './randomizedParameters';
 import { textStyle, buttonStyle } from './dimensions';
 import { shuffle } from './convenienceFunctions';
@@ -36,6 +36,7 @@ import Data from './Data';
 
 
 const Root = () => {
+
   //keeps track of the current phase
   const [currentPhase, setCurrentPhase] = useState("prolificId");
   //keeps track of the current trial, for the Training phase
@@ -43,7 +44,7 @@ const Root = () => {
   //keeps track of the current trial, for the Test phase
   const [testNumber, setTestNumber] = useState(0);
   //keeps track of the current trial, for the probability check phase
-  const [checkNumber, setCheckNumber] = useState(0);
+  // const [checkNumber, setCheckNumber] = useState(0);
   //keeps track of the current trial, for the Main phase
   const [mainNumber, setMainNumber] = useState(0);
 
@@ -52,7 +53,7 @@ const Root = () => {
   //increment the trial number, in the Test phase
   const incrementTest = (integer) => setTestNumber(integer + 1);
   //increment the trial number, in the probability check phase
-  const incrementCheck = (integer) => setCheckNumber(integer + 1);
+  // const incrementCheck = (integer) => setCheckNumber(integer + 1);
   //increment the trial number, in the main phase
   const incrementMain = (integer) => setMainNumber(integer + 1);
 
@@ -61,11 +62,11 @@ const Root = () => {
   //const trial_ids = [1,2,3,4,5,6,7,8,9,10];
   const trial_ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   //generate the trials of the Training phase
-  const trials = trial_ids.map((i) => {
-    return <TrainingPhase key={i} increment={increment} trial={trialNumber}
-      phase={currentPhase} trial_ids={trial_ids} shuffledUrnIds={shuffledUrnIds}
-      setCurrentPhase={setCurrentPhase} />
-  })
+  // const trials = trial_ids.map((i) => {
+  //   return <TrainingPhase key={i} increment={increment} trial={trialNumber}
+  //     phase={currentPhase} trial_ids={trial_ids} shuffledUrnIds={shuffledUrnIds}
+  //     setCurrentPhase={setCurrentPhase} />
+  // })
 
   //a list of the urns about which we will ask causal questions,
   //arranged in the order in which we will ask the questions during the Test phase
@@ -98,38 +99,9 @@ const Root = () => {
 
 
 
-  //a list of the urns about which we will ask probability questions,
-  //arranged in the order in which we will ask the questions during the probability check phase
-  //i.e. if the array is [3,1,7] it means we will ask about the probability
-  //of urn 3, then urn 1, then urn 7 (note that the urn ID is not the same as the position of
-  //the urn on the screen)
-  const check_ids = useRef(shuffle(
-    urn_ids.map((i) => {
-      if (actualWorld[i - 1]) { return i }
-    }).filter((a) => a > 0)
-  )).current;
-
-
-  //generate the trials of the Test phase
-  var checks = check_ids.map((i) => {
-    return (
-      <ProbabilityCheck key={i} incrementCheck={incrementCheck}
-        check_ids={check_ids} phase={currentPhase} checkNumber={checkNumber}
-        shuffledUrnIds={shuffledUrnIds} probCheckOrder={probCheckOrder}
-      />
-    )
-  })
-
-  //add a page at the beginning of the Test phase which will
-  //display instructions
-  checks.unshift(
-    <ProbabilityCheck key={0} incrementCheck={incrementCheck}
-      check_ids={check_ids} phase={currentPhase} checkNumber={checkNumber}
-      shuffledUrnIds={shuffledUrnIds} probCheckOrder={probCheckOrder}
-    />
-  )
 
   const ProlificId = (props) => {
+    console.log("new run");
 
     const [id, setId] = useState("");
     const handleId = (e) => {

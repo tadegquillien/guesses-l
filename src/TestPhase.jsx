@@ -19,7 +19,6 @@ import { comb_array, expanded_comb_array, buttonOrder } from './randomizedParame
 
 const TestPhase = (props) => {
 
-
     const initial_string = "";
     const prefix = "The ball drawn from the box will probably be: ";
 
@@ -36,13 +35,17 @@ const TestPhase = (props) => {
     const [yellow, setYellow] = useState(0);
 
 
-    const composedTextStyle = props.mode == "instructions" ? { fontSize: "2vw" } : { fontSize: "3vw" };
-    const col1 = buttonOrder[0];
+    const composedTextStyle = props.mode == "instructions" ? {
+        fontSize: "2vw"
+    } : {
+        fontSize: "3vw"
+    };
+
 
 
     const instructionsText = props.mode == "instructions" ? <div style={{
         fontSize: "1.5vw",
-        margin: 'auto', padding: '0vw 5vw 0vw 5vw'
+        margin: 'auto', padding: '5vw 5vw 0vw 5vw'
     }}
     >
         <p >Let us try once to see how this works.</p>
@@ -278,14 +281,13 @@ const TestPhase = (props) => {
     })
 
     //the question that appears in the header
-    const header = props.mode == "instructions" ? null : <span className="question">
-
-        <h3 style={{ marginLeft: "20vw", marginRight: "20vw" }} text-align="center">How would you describe what you think
+    const header = props.mode == "instructions" ? null : <div className="questionTestPhase">
+        <h3 style={{
+            marginLeft: "20vw", marginRight: "20vw"
+        }}>How would you describe what you think
             will happen if someone draws a ball from the box?
         </h3>
-
-
-    </span>
+    </div>
 
 
 
@@ -295,20 +297,19 @@ const TestPhase = (props) => {
         testNumber={props.testNumber} test_ids={props.test_ids} shuffledUrnIds={props.shuffledUrnIds} />;
 
     return (
-        <span className="metaContainer">
+        <span className="metaContainerTestPhase">
             {header}
-            <div className="container">
-                <div className="urnsTest" >{img}</div>
-                <div className="scoreboardTest" style={{ marginTop: "5vw" }}>
-                    <div style={{ marginLeft: "30vw" }}></div>
-
+            <div className="containerTestPhase">
+                <div className="urnWindowTestPhase" >{img}</div>
+                <div className="guessWindowTestPhase" >
                     {instructionsText}
-                    <p style={composedTextStyle}>{prefix}</p>
-                    <p style={composedTextStyle}>{text.length == 0 ? <text>&nbsp;</text> : setDisplay(text)}</p>
+                    <p style={{ ...composedTextStyle, textAlign: "center" }} >{prefix}</p>
+                    <p style={{ ...composedTextStyle, textAlign: "center" }} >{text.length == 0 ? <text>&nbsp;</text> : setDisplay(text)}</p>
 
-                    <div>{buttonList[0]} &nbsp; {buttonList[1]}</div>
+                    <div style={{ textAlign: "center" }}>{buttonList[0]} &nbsp; {buttonList[1]}</div>
                     <p></p>
-                    <div>{buttonList[2]} &nbsp; {buttonList[3]}</div>
+                    <div style={{ textAlign: "center" }}>{buttonList[2]} &nbsp; {buttonList[3]}</div>
+
                     <p></p>
                     {nextTrialButton}
 
